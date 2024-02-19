@@ -3,7 +3,9 @@ resource "aws_s3_bucket" "example" {
   force_destroy = true
 }
 
-resource "aws_s3_bucket_acl" "example" {
+resource "aws_s3_bucket_ownership_controls" "example" {
   bucket = aws_s3_bucket.example.id
-  acl    = "private"
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
 }
